@@ -24,9 +24,11 @@ Imports:
     cowplot,
     ggplot2,
     magrittr,
+    future,
     shinyMobile,
-    shinyWidgets,
-    waiter
+    waiter,
+    rmarkdown,
+    markdown
 Remotes:
     epiforecasts/ringbp
 RoxygenNote: 7.0.2

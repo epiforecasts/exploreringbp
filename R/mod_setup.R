@@ -13,7 +13,6 @@
 #' @keywords internal
 #' @export 
 #' @importFrom shiny NS tagList 
-#' @importFrom shinyWidgets prettyRadioButtons
 #' @import shinyMobile
 mod_setup_ui <- function(id){
   ns <- NS(id)
