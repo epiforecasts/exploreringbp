@@ -7,6 +7,13 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports: 
-    shiny, 
-    golem
-RoxygenNote: 6.1.0
+    shiny,
+    golem,
+    processx,
+    attempt,
+    DT,
+    glue,
+    htmltools
+RoxygenNote: 7.0.2
+Suggests: 
+    testthat
