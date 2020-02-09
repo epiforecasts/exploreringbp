@@ -43,7 +43,7 @@ app_ui <- function() {
             f7Row(
               f7Col(
                 f7Card(
-                  title = "Probability of control",
+                  title = "Percentage of outbreaks controlled",
                   textOutput("extinct_prob")
                 )
               ),
@@ -54,13 +54,19 @@ app_ui <- function() {
                 )
               )
             ),
-            f7Card(
-              title = "Outbreak trajectories",
-              plotOutput("trace_plot")
-            ),
-            f7Card(
-              title = "Cases per outbreak generation",
-              plotOutput("generation_plot")
+            f7Row(
+              f7Col(
+                f7Card(
+                  title = "Outbreak trajectories",
+                  plotOutput("trace_plot")
+                )
+              ),
+              f7Col(
+                f7Card(
+                  title = "Cases per outbreak generation",
+                  plotOutput("generation_plot")
+                )
+              )
             )
           ),
           f7Tab(
@@ -68,7 +74,8 @@ app_ui <- function() {
             icon = f7Icon("rectangle_3_offgrid"),
             active = FALSE,
             waiter::waiter_show_on_load(loader, color = "#000"),
-            mod_setup_ui("setup_ui_1")
+            mod_setup_ui("setup_ui_1"),
+            h1("")
           ),
           f7Tab(
             tabName = "Details",

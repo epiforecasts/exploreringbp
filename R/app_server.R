@@ -36,7 +36,9 @@ app_server <- function(input, output,session) {
   })
   
   output$extinct_prob <- renderText({
-    extinct_prob() 
+    extinct_prob()  %...>% {
+      paste0(round(. * 100, 0), "%")
+    }
   })
 
   output$effective_r0 <- renderText({
