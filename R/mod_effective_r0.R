@@ -25,13 +25,14 @@ mod_effective_r0_ui <- function(id){
 #' @param sliced_sims A single timepoint from each model simulation
 #' @export
 #' @importFrom dplyr summarise
+#' @importFrom promises %...>%
 #' @keywords internal
     
 mod_effective_r0_server <- function(input, output, session, sliced_sims){
   ns <- session$ns
   
   effective_r0 <- reactive({
-    effective_r0 <- sliced_sims() %>% 
+    sliced_sims() %...>% 
       dplyr::summarise(
         bottom = quantile(effective_r0, 0.025, na.rm = TRUE),
         lower = quantile(effective_r0, 0.25, na.rm = TRUE),

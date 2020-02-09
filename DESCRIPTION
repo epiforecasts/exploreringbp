@@ -19,7 +19,8 @@ Imports:
     dplyr,
     tidyr,
     tibble,
-    purrr
+    purrr,
+    promises
 Remotes:
     epiforecasts/ringbp
 RoxygenNote: 7.0.2

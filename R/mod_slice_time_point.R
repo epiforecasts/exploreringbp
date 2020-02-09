@@ -26,6 +26,7 @@ mod_slice_time_point_ui <- function(id){
 #' @param sims dataframe of model simulations
 #' @export
 #' @importFrom dplyr group_by slice ungroup
+#' @importFrom promises %...>%
 #' @keywords internal
     
 mod_slice_time_point_server <- function(input, output, session, sims){
@@ -33,9 +34,9 @@ mod_slice_time_point_server <- function(input, output, session, sims){
   
   
   sliced_sims <- reactive({
-     sims() %>% 
-      dplyr::group_by(sim) %>% 
-      dplyr::slice(1) %>% 
+     sims() %...>% 
+      dplyr::group_by(sim) %...>% 
+      dplyr::slice(1) %...>%
       dplyr::ungroup()
   })
   

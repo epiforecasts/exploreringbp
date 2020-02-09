@@ -7,7 +7,7 @@
 \usage{
 mod_model_ui(id)
 
-mod_model_server(input, output, session)
+mod_model_server(input, output, session, params)
 }
 \arguments{
 \item{id}{shiny id}
@@ -17,6 +17,8 @@ mod_model_server(input, output, session)
 \item{output}{internal}
 
 \item{session}{internal}
+
+\item{params}{A list of inputs for the model}
 }
 \description{
 A module for running the `ringbp` model

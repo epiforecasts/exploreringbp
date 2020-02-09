@@ -7,7 +7,7 @@ app_ui <- function() {
     fluidPage(
       sidebarLayout(
         sidebarPanel(
-          mod_model_ui("model_ui_1")
+          mod_setup_ui("setup_ui_1")
         ),
         mainPanel(
             textOutput("extinct_prob"),

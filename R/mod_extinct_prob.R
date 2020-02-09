@@ -24,15 +24,18 @@ mod_extinct_prob_ui <- function(id){
     
 #' @rdname mod_extinct_prob
 #' @param sims dataframe of model simulations
+#' @param setup A list of inputs for the model
 #' @export
 #' @importFrom ringbp extinct_prob
 #' @keywords internal
     
-mod_extinct_prob_server <- function(input, output, session, sims){
+mod_extinct_prob_server <- function(input, output, session, sims, setup){
   ns <- session$ns
   
   extinct_prob <- reactive({
-    ringbp::extinct_prob(sims(),cap_cases = 4500)
+    sims() %...>% {
+      ringbp::extinct_prob(., cap_cases = setup$cap_cases)
+    }
   })
   
   
