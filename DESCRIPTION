@@ -14,6 +14,14 @@ Imports:
     DT,
     glue,
     htmltools
+    ringbp,
+    memoise,
+    dplyr,
+    tidyr,
+    tibble,
+    purrr
+Remotes:
+    epiforecasts/ringbp
 RoxygenNote: 7.0.2
 Suggests: 
     testthat

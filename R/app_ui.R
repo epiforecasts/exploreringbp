@@ -7,7 +7,7 @@ app_ui <- function() {
     fluidPage(
       sidebarLayout(
         sidebarPanel(
-          mod_run_model_ui("run_model_ui_1")
+          mod_model_ui("model_ui_1")
         ),
         mainPanel(
             dataTableOutput("table")

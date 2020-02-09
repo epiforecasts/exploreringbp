@@ -3,10 +3,9 @@ library(ggplot2)
 library(dplyr)
 library(memoise)
 
-fc <- cache_filesystem(".cache")
-mscenario_sim <- memoise(ringbp::scenario_sim, cache = fc)
+mscenario_sim <- memoise(ringbp::scenario_sim)
 
-res <- mscenario_sim(n.sim = 100, num.initial.cases = 10,prop.asym=0,
+res <- mscenario_sim(n.sim = 10, num.initial.cases = 10,prop.asym=0,
                               prop.ascertain = 0.2, cap_cases = 4500, cap_max_days = 350,
                               r0isolated = 0, r0community = 2.5, disp.com = 0.16, disp.iso = 1, delay_shape = 1.651524,
                               delay_scale = 4.287786,k = 0)
