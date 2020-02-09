@@ -15,7 +15,37 @@
 mod_model_ui <- function(id){
   ns <- NS(id)
   tagList(
-  
+    actionButton(ns("go"), "Simulate"),
+    sliderInput(ns("prop.ascertain"),
+                label = "Control effectiveness:",
+                min = 0,
+                max = 1, 
+                value = 0.8,
+                step = 0.1),
+    sliderInput(ns("num.initial.cases"),
+                label = "Number of initial cases:",
+                min = 1, 
+                max = 50, 
+                step = 1, 
+                value = 20),
+    sliderInput(ns("r0community"),
+                label = "Basic reproduction no. in the community:",
+                min = 0, 
+                max = 4,
+                value = 2.5,
+                step = 0.1),
+    sliderInput(ns("r0isolated"),
+                label = "Basic reproduction no. in those isolated:",
+                min = 0, 
+                max = 4,
+                value = 0,
+                step = 0.1),
+    sliderInput(ns("prop.asym"),
+                label = "Proportion of cases that are asymptomatic:",
+                min = 0, 
+                max = 1,
+                value = 0.1,
+                step = 0.1)
   )
 }
     
@@ -31,12 +61,21 @@ mod_model_server <- function(input, output, session){
   
   mscenario_sim <- memoise::memoise(ringbp::scenario_sim)
   
-  out <- reactive({
-    res <- mscenario_sim(n.sim = 10, num.initial.cases = 10,prop.asym=0,
-                         prop.ascertain = 0.2, cap_cases = 4500, cap_max_days = 350,
-                         r0isolated = 0, r0community = 2.5, disp.com = 0.16, disp.iso = 1, delay_shape = 1.651524,
+  out <-  eventReactive(input$go, {
+    res <- mscenario_sim(n.sim = 10, 
+                         num.initial.cases = input$num.initial.cases,
+                         prop.asym= input$prop.asym,
+                         prop.ascertain = input$prop.ascertain, 
+                         cap_cases = 4500, 
+                         cap_max_days = 350,
+                         r0isolated = input$r0community, 
+                         r0community = input$r0community, 
+                         disp.com = 0.16, 
+                         disp.iso = 1, 
+                         delay_shape = 1.651524,
                          delay_scale = 4.287786,k = 0)
-  })
+  }, ignoreNULL = FALSE)
+  
   return(out)
 }
   

@@ -10,7 +10,9 @@ app_ui <- function() {
           mod_model_ui("model_ui_1")
         ),
         mainPanel(
-            dataTableOutput("table")
+            textOutput("extinct_prob"),
+            dataTableOutput("effective_r0"),
+            dataTableOutput("cases_per_gen")
         )
       )
     )

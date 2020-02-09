@@ -15,7 +15,16 @@ app_server <- function(input, output,session) {
   # Extract and summarise cases per generation
   cases_per_gen <- callModule(mod_cases_per_gen_server, "cases_per_gen_ui_1", sliced_sims)
   
-  output$table <- renderDataTable({
+  output$extinct_prob <- renderText({
+    extinct_prob()
+  })
+  
+  output$effective_r0 <- renderDataTable({
     effective_r0()
   })
+  
+  output$cases_per_gen <- renderDataTable({
+    cases_per_gen()
+  })
+
 }
