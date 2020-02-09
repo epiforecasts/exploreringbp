@@ -20,7 +20,13 @@ Imports:
     tidyr,
     tibble,
     purrr,
-    promises
+    promises,
+    cowplot,
+    ggplot2,
+    magrittr,
+    shinyMobile,
+    shinyWidgets,
+    waiter
 Remotes:
     epiforecasts/ringbp
 RoxygenNote: 7.0.2

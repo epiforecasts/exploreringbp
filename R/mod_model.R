@@ -40,7 +40,7 @@ mod_model_server <- function(input, output, session, params){
     prop.ascertain <- params$prop.ascertain
     cap_cases  <- params$cap_cases 
     cap_max_days <- params$cap_max_days
-    r0isolated <- params$r0community
+    r0isolated <- params$r0isolated
     r0community <- params$r0community
     
     ## Run as a background process and cache results

@@ -9,5 +9,5 @@ golem::detach_all_attached()
 golem::document_and_reload()
 
 # Run the application
-future::plan("multisession")
+future::plan("sequential")
 exploreringbp::run_app()

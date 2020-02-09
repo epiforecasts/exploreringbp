@@ -1,6 +1,12 @@
 #' @import shiny
+#' @importFrom promises %...>%
 app_server <- function(input, output,session) {
   
+  
+
+# Run model and munge output ----------------------------------------------
+
+
   # Implement model settings
   setup <- callModule(mod_setup_server, "setup_ui_1")
   
@@ -19,16 +25,31 @@ app_server <- function(input, output,session) {
   # Extract and summarise cases per generation
   cases_per_gen <- callModule(mod_cases_per_gen_server, "cases_per_gen_ui_1", sliced_sims)
 
+  
+
+# Output ------------------------------------------------------------------
+
+  output$trace_plot <- renderPlot({
+    sims() %...>% {
+      exploreringbp::plot_traces(.)
+    }
+  })
+  
   output$extinct_prob <- renderText({
     extinct_prob() 
   })
 
-  output$effective_r0 <- renderDataTable({
-    effective_r0()
+  output$effective_r0 <- renderText({
+    effective_r0() %...>% {
+      paste0(round(.$median, 1), " (95% Credible Interval: ",
+             round(.$bottom, 1), " - ", round(.$top, 1), ")")
+    }
   })
 
-  output$cases_per_gen <- renderDataTable({
-    cases_per_gen()
+  output$generation_plot <- renderPlot({
+    cases_per_gen() %...>% {
+      exploreringbp::plot_generation_size(.)
+    }
   })
 
 }
