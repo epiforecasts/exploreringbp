@@ -29,7 +29,7 @@ parallel using the `future` package. *This step is optional.*
 
 ``` r
 ## For high load settings with multiple cores available
-future::plan("mutlisession")
+future::plan("multisession")
 ```
 
 Run the app locally.

@@ -35,7 +35,7 @@ For use cases in which high loads are expected the app can be run in parallel us
 
 ```{r, eval = FALSE}
 ## For high load settings with multiple cores available
-future::plan("mutlisession")
+future::plan("multisession")
 ```
 
 Run the app locally.
