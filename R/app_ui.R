@@ -9,7 +9,7 @@ app_ui <- function() {
     golem_add_external_resources(),
     # List the first level UI elements here 
     f7Page(
-      title = "Explore: Feasibility of controlling 2019-nCoV outbreaks by isolation of cases and contacts",
+      title = "Explore the feasibility of controlling 2019-nCoV outbreaks by isolation of cases and contacts",
       preloader = FALSE,
       init = f7Init(
         skin = "md", 
@@ -18,82 +18,79 @@ app_ui <- function() {
       ),
       f7TabLayout(
         navbar = f7Navbar(
-          title = "Explore: Feasibility of controlling 2019-nCoV outbreaks by isolation of cases and contacts",
+          title = "Explore the feasibility of controlling 2019-nCoV outbreaks by isolation of cases and contacts",
           hairline = FALSE,
           shadow = TRUE,
           left_panel = TRUE,
           right_panel = FALSE
         ),
-        panels = tagList(
-          f7Panel(
-            title = "About", 
-            side = "left", 
-            theme = "light",
-            effect = "cover",
-            p("Explore: Feasibility of controlling 2019-nCoV outbreaks by isolation of cases and contacts"),
-            f7Link(label = "Authors", src = "https://cmmid.github.io/ncov", external = TRUE),
-            f7Link(label = "App code", src = "https://github.com/epiforecasts/exploreringbp", 
-                   external = TRUE
-          ),
-          f7Link(label = "Model code", src = "https://github.com/epiforecasts/ringbp", 
-                 external = TRUE
-          ),
-          tags$pre(tags$code(version))
-        ),
-        f7Tabs(
-          animated = TRUE,
-          id = 'tabs',
-          f7Tab(
-            tabName = "Results",
-            icon = f7Icon("square_line_vertical_square_fill"),
-            active = TRUE,
-            waiter::waiter_show_on_load(loader),
-            waiter::waiter_hide_on_render("model_ui_1-trace_plot"),
-            f7Row(
-              f7Col(
-                mod_extinct_prob_ui("extinct_prob_ui_1")
-              ),
-              f7Col(
-                mod_effective_r0_ui("effective_r0_ui_1")
+          panels = 
+            tagList(
+              f7Panel(
+                title = "About", 
+                side = "left", 
+                theme = "light",
+                effect = "cover",
+                p(includeRMarkdown("inst/markdown/what_does_this_app_do.Rmd")),
+                f7Link(label = "Authors", src = "https://cmmid.github.io/ncov", external = TRUE),
+                f7Link(label = "Application code", src = "https://github.com/epiforecasts/exploreringbp", 
+                       external = TRUE
+                ),
+                f7Link(label = "Model code", src = "https://github.com/epiforecasts/ringbp", 
+                       external = TRUE
+                ),
+                tags$pre(tags$code(version))
+              )),
+              f7Tabs(
+                animated = TRUE,
+                id = 'tabs',
+                f7Tab(
+                  tabName = "Results",
+                  icon = f7Icon("square_line_vertical_square_fill"),
+                  active = TRUE,
+                  waiter::waiter_show_on_load(loader),
+                  waiter::waiter_hide_on_render("model_ui_1-trace_plot"),
+                  f7Row(
+                    f7Col(
+                      mod_extinct_prob_ui("extinct_prob_ui_1")
+                    ),
+                    f7Col(
+                      mod_effective_r0_ui("effective_r0_ui_1")
+                    )
+                  ),
+                  f7Row(
+                    f7Col(
+                      mod_model_ui("model_ui_1")
+                    ),
+                    f7Col(
+                      mod_cases_per_gen_ui("cases_per_gen_ui_1")
+                    )
+                  )
+                ),
+                f7Tab(
+                  tabName = "Settings",
+                  icon = f7Icon("rectangle_3_offgrid"),
+                  active = FALSE,
+                  mod_setup_ui("setup_ui_1"),
+                  h1("")
+                ),
+                f7Tab(
+                  tabName = "Details",
+                  icon = f7Icon("square_line_vertical_square_fill"),
+                  active = FALSE,
+                  f7Card(
+                    title = "What does this app do?",
+                    includeRMarkdown("inst/markdown/what_does_this_app_do.Rmd")
+                  ),
+                  f7Card(
+                    title = "Learning more",
+                    includeRMarkdown("inst/markdown/learning_more.Rmd")
+                  )
+                )
               )
-            ),
-            f7Row(
-              f7Col(
-                mod_model_ui("model_ui_1")
-              ),
-              f7Col(
-                mod_cases_per_gen_ui("cases_per_gen_ui_1")
-              )
-            )
-          ),
-          f7Tab(
-            tabName = "Settings",
-            icon = f7Icon("rectangle_3_offgrid"),
-            active = FALSE,
-            mod_setup_ui("setup_ui_1"),
-            h1("")
-          ),
-          f7Tab(
-            tabName = "Details",
-            icon = f7Icon("square_line_vertical_square_fill"),
-            active = FALSE,
-            f7Card(
-              title = "Summary",
-              "In this section give a brief overview of the model. What it is, who made it and 
-              what it can be used for (i.e a shortened version of the blog post.)"
-            ),
-            f7Card(
-              title = "Learning more",
-              "In this section link out to the model preprint and add contact details for the corresponding 
-              author. Could also potentially link out to whatever instructions are written for the App (i.e 
-              as done by Billy and team."
-            )
-            )
-          )
         )
       )
     )
-  )
 }
 
 #' @import shiny

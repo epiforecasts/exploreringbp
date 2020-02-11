@@ -1,0 +1,5 @@
+---
+output: html_document
+---
+
+This application allows interactive exploration of individual contact tracing and isolation scenarios for the 2019-nCoV outbreak using the branching process model developed in "Feasibility of controlling 2019-nCoV outbreaks by isolation of cases and contacts" by Hellewell et al. For more details on the model used or the scenarios considered please see the paper.

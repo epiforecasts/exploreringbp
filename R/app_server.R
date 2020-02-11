@@ -32,4 +32,6 @@ app_server <- function(input, output,session) {
   callModule(mod_cases_per_gen_server, 
              "cases_per_gen_ui_1", 
              sliced_sims)
+  
+  
 }

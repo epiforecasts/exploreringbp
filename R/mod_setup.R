@@ -20,8 +20,6 @@ mod_setup_ui <- function(id){
   tagList(
     f7Row(
       f7Col(    
-        f7Card(title = "Run the model with current settings",
-                       actionButton(ns("go"), "Run")),
         f7Card(title = "Outbreak settings",
                f7Slider(ns("num.initial.cases"),
                         label = "Number of initial cases:",
@@ -70,6 +68,8 @@ mod_setup_ui <- function(id){
         )
       ),
       f7Col(
+        f7Card(title = "Run the model with current settings",
+               actionButton(ns("go"), "Run")),
         f7Card(title = "Control settings",
                f7Slider(ns("prop.ascertain"),
                         label = "Control effectiveness:",
