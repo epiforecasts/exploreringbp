@@ -31,7 +31,7 @@ app_ui <- function() {
                 side = "left", 
                 theme = "light",
                 effect = "cover",
-                p(includeRMarkdown("inst/markdown/what_does_this_app_do.Rmd")),
+                p(includeRMarkdown(system.file("app/www/markdown/what_does_this_app_do.Rmd", package = "exploreringbp"))),
                 f7Link(label = "Authors", src = "https://cmmid.github.io/ncov", external = TRUE),
                 f7Link(label = "Application code", src = "https://github.com/epiforecasts/exploreringbp", 
                        external = TRUE
@@ -80,15 +80,15 @@ app_ui <- function() {
                   active = FALSE,
                   f7Card(
                     title = "What does this app do?",
-                    includeRMarkdown("inst/markdown/what_does_this_app_do.Rmd")
+                    includeRMarkdown(system.file("app/www/markdown/what_does_this_app_do.Rmd", package = "exploreringbp"))
                   ),
                   f7Card(
                     title = "Learning more",
-                    includeRMarkdown("inst/markdown/learning_more.Rmd")
+                    includeRMarkdown(system.file("app/www/markdown/learning_more.Rmd", package = "exploreringbp"))
                   )
                 )
               )
-        )
+         )
       )
     )
 }
