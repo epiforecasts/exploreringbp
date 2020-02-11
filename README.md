@@ -1,19 +1,15 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# Explore: Feasibility of controlling 2019-nCoV outbreaks by isolation of cases and contacts
+# Explore the feasibility of controlling 2019-nCoV outbreaks by isolation of cases and contacts
 
-<!-- badges: start -->
-
-[![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
-<!-- badges: end -->
-
-Explore individual scenarios using the model developed in “Feasibility
-of controlling 2019-nCoV outbreaks by isolation of cases and contacts”.
-
-This applications is mobile ready and uses asynchronous programming so
-that a large number of users can be supported.
+This application allows interactive exploration of individual contact
+tracing and isolation scenarios for the 2019-nCoV outbreak using the
+branching process model developed in [“Feasibility of
+controlling 2019-nCoV outbreaks by isolation of cases and
+contacts”](https://cmmid.github.io/ncov/isolation_contact_tracing/) by
+Hellewell et al. For more details on the model used or the scenarios
+considered please see the paper.
 
 ## Running the app
 
@@ -53,17 +49,6 @@ The details tab contains a brief overview of the model used in the app
 and links to resources for further information.
 
 <img src="man/figures/details.png" width="100%" />
-
-## Things to do
-
-  - \[ \] Determine if the app is useful and what direction to take it
-    in
-  - \[ \] Add all model parameters to settings (with grouped settings
-    for SARS-like)
-  - \[ \] Write up model summary
-  - \[ \] Write up links to other work
-  - \[ \] Finalise about section
-  - \[ \] Think if there is any other useful output
 
 ## Docker
 
