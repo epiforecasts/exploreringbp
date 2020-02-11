@@ -16,6 +16,10 @@
 mod_effective_r0_ui <- function(id){
   ns <- NS(id)
   tagList(
+    f7Card(
+      title = "Effective reproduction number",
+      textOutput(ns("effective_r0"))
+    )
   )
 }
     
@@ -42,7 +46,13 @@ mod_effective_r0_server <- function(input, output, session, sliced_sims){
       )
   })
   
-  return(effective_r0)
+  
+  output$effective_r0 <- renderText({
+    effective_r0() %...>% {
+      paste0(round(.$median, 1), " (95% Credible Interval: ",
+             round(.$bottom, 1), " - ", round(.$top, 1), ")")
+    }
+  })
 }
     
 ## To be copied in the server

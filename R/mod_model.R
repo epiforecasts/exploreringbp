@@ -15,6 +15,12 @@
 mod_model_ui <- function(id){
   ns <- NS(id)
 
+  tagList(
+    f7Card(
+      title = "Outbreak trajectories",
+      plotOutput(ns("trace_plot"))
+    )
+  )
 }
     
     
@@ -57,6 +63,13 @@ mod_model_server <- function(input, output, session, params){
                            delay_shape = 1.651524,
                            delay_scale = 4.287786, k = 0)})
   }, ignoreNULL = FALSE)
+  
+  
+  output$trace_plot <- renderPlot({
+    out() %...>% {
+      exploreringbp::plot_traces(.)
+    }
+  })
   
   return(out)
 }

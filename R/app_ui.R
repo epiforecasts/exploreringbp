@@ -29,7 +29,12 @@ app_ui <- function() {
             theme = "light",
             effect = "cover",
             p("Explore: Feasibility of controlling 2019-nCoV outbreaks by isolation of cases and contacts"),
-            f7Link(label = "Authors", src = "https://cmmid.github.io/ncov", external = TRUE)
+            f7Link(label = "Authors", src = "https://cmmid.github.io/ncov", external = TRUE),
+            f7Link(label = "App code", src = "https://github.com/epiforecasts/exploreringbp", 
+                   external = TRUE
+          ),
+          f7Link(label = "Model code", src = "https://github.com/epiforecasts/ringbp", 
+                 external = TRUE
           )
         ),
         f7Tabs(
@@ -39,33 +44,20 @@ app_ui <- function() {
             tabName = "Results",
             icon = f7Icon("square_line_vertical_square_fill"),
             active = TRUE,
-            waiter::waiter_show_on_load(loader, color = "#000"),
             f7Row(
               f7Col(
-                f7Card(
-                  title = "Percentage of outbreaks controlled",
-                  textOutput("extinct_prob")
-                )
+                mod_extinct_prob_ui("extinct_prob_ui_1")
               ),
               f7Col(
-                f7Card(
-                  title = "Effective reproduction number",
-                  textOutput("effective_r0")
-                )
+                mod_effective_r0_ui("effective_r0_ui_1")
               )
             ),
             f7Row(
               f7Col(
-                f7Card(
-                  title = "Outbreak trajectories",
-                  plotOutput("trace_plot")
-                )
+                mod_model_ui("model_ui_1")
               ),
               f7Col(
-                f7Card(
-                  title = "Cases per outbreak generation",
-                  plotOutput("generation_plot")
-                )
+                mod_cases_per_gen_ui("cases_per_gen_ui_1")
               )
             )
           ),
@@ -73,7 +65,6 @@ app_ui <- function() {
             tabName = "Settings",
             icon = f7Icon("rectangle_3_offgrid"),
             active = FALSE,
-            waiter::waiter_show_on_load(loader, color = "#000"),
             mod_setup_ui("setup_ui_1"),
             h1("")
           ),
@@ -81,7 +72,6 @@ app_ui <- function() {
             tabName = "Details",
             icon = f7Icon("square_line_vertical_square_fill"),
             active = FALSE,
-            waiter::waiter_show_on_load(loader, color = "#000"),
             f7Card(
               title = "Summary",
               "In this section give a brief overview of the model. What it is, who made it and 
@@ -98,6 +88,7 @@ app_ui <- function() {
         )
       )
     )
+  )
 }
 
 #' @import shiny
@@ -117,9 +108,3 @@ golem_add_external_resources <- function(){
   )
 }
 
-
-loader <- tagList(
-  waiter::spin_loaders(42),
-  br(),
-  h3("Simulating outbreaks")
-)

@@ -16,7 +16,10 @@
 mod_cases_per_gen_ui <- function(id){
   ns <- NS(id)
   tagList(
-  
+    f7Card(
+      title = "Cases per outbreak generation",
+      plotOutput(ns("generation_plot"))
+    )
   )
 }
     
@@ -53,7 +56,11 @@ mod_cases_per_gen_server <- function(input, output, session, sliced_sims){
       ) 
   })
   
-  return(generation_sizes)
+  output$generation_plot <- renderPlot({
+    generation_sizes() %...>% {
+      exploreringbp::plot_generation_size(.)
+    }
+  })
 }
     
  

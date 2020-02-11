@@ -16,7 +16,10 @@
 mod_extinct_prob_ui <- function(id){
   ns <- NS(id)
   tagList(
-  
+    f7Card(
+      title = "Percentage of outbreaks controlled",
+      textOutput(ns("extinct_prob"))
+    )
   )
 }
     
@@ -39,7 +42,11 @@ mod_extinct_prob_server <- function(input, output, session, sims, setup){
   })
   
   
-  return(extinct_prob)
+  output$extinct_prob <- renderText({
+    extinct_prob()  %...>% {
+      paste0(round(. * 100, 0), "%")
+    }
+  })
 }
     
 ## To be copied in the UI
