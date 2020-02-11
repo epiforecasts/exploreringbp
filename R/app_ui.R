@@ -2,13 +2,15 @@
 #' @import shinyMobile
 #' @import waiter
 app_ui <- function() {
+  version <- paste0("v", packageVersion("exploreringbp"))
+  
   tagList(
     # Leave this function for adding external resources
     golem_add_external_resources(),
     # List the first level UI elements here 
     f7Page(
       title = "Explore: Feasibility of controlling 2019-nCoV outbreaks by isolation of cases and contacts",
-      preloader = TRUE,
+      preloader = FALSE,
       init = f7Init(
         skin = "md", 
         color = "gray",
@@ -35,7 +37,8 @@ app_ui <- function() {
           ),
           f7Link(label = "Model code", src = "https://github.com/epiforecasts/ringbp", 
                  external = TRUE
-          )
+          ),
+          tags$pre(tags$code(version))
         ),
         f7Tabs(
           animated = TRUE,
@@ -44,6 +47,8 @@ app_ui <- function() {
             tabName = "Results",
             icon = f7Icon("square_line_vertical_square_fill"),
             active = TRUE,
+            waiter::waiter_show_on_load(loader),
+            waiter::waiter_hide_on_render("model_ui_1-trace_plot"),
             f7Row(
               f7Col(
                 mod_extinct_prob_ui("extinct_prob_ui_1")
@@ -100,7 +105,8 @@ golem_add_external_resources <- function(){
  
   tags$head(
     golem::activate_js(),
-    golem::favicon()
+    golem::favicon(),
+    waiter::use_waiter(include_js = FALSE)
     # Add here all the external resources
     # If you have a custom.css in the inst/app/www
     # Or for example, you can add shinyalert::useShinyalert() here
@@ -108,3 +114,8 @@ golem_add_external_resources <- function(){
   )
 }
 
+loader <- tagList(
+  waiter::spin_loaders(42),
+  br(),
+  h3("Simulating outbreaks")
+)

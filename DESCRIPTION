@@ -1,6 +1,6 @@
 Package: exploreringbp
 Title: Explore: Feasibility of controlling 2019-nCoV outbreaks by isolation of cases and contacts
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: person('Sam', 'Abbott', email = 'contact@samabbott.co.uk', role = c('cre', 'aut'))
 Description: Explore: Feasibility of controlling 2019-nCoV outbreaks by isolation of cases and contacts.
 License: MIT + file LICENSE
@@ -26,9 +26,9 @@ Imports:
     magrittr,
     future,
     shinyMobile,
-    waiter,
     rmarkdown,
-    markdown
+    markdown,
+    waiter
 Remotes:
     epiforecasts/ringbp
 RoxygenNote: 7.0.2

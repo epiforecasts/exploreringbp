@@ -48,9 +48,31 @@ mod_model_server <- function(input, output, session, params){
     cap_max_days <- params$cap_max_days
     r0isolated <- params$r0isolated
     r0community <- params$r0community
+    quarantine <- params$quarantine
+    disp.com <- params$dispcommunity
+    disp.iso <- params$dispisolation
+    if (params$delay %in% "Short") {
+      delay_shape = 1.651524
+      delay_scale = 4.287786
+    }else if (params$delay %in% "Long") {
+      delay_shape = 2.305172
+      delay_scale = 9.483875
+    }
+    if (params$theta %in% "<1%") {
+      k <- 30
+    }else if (params$theta %in% "15%"){
+      k <- 1.95
+    }else if (params$theta %in% "30%"){
+      k <- 0.7
+    }
+    if (params$quarantine %in% "Symptom onset") {
+      quarantine <- FALSE
+    }else{
+      quarantine <- TRUE
+    }
     
     ## Run as a background process and cache results
-    future({mscenario_sim(n.sim = n.sim, #params$n_sim, 
+    future({mscenario_sim(n.sim = n.sim, 
                           num.initial.cases = num.initial.cases,
                            prop.asym = prop.asym,
                            prop.ascertain = prop.ascertain, 
@@ -58,10 +80,13 @@ mod_model_server <- function(input, output, session, params){
                            cap_max_days = cap_max_days,
                            r0isolated = r0isolated, 
                            r0community = r0community, 
-                           disp.com = 0.16, 
-                           disp.iso = 1, 
-                           delay_shape = 1.651524,
-                           delay_scale = 4.287786, k = 0)})
+                           disp.com = disp.com, 
+                           disp.iso = disp.iso, 
+                           delay_shape = delay_shape,
+                           delay_scale = delay_scale, 
+                           k = k,
+                         #  quarantine = quarantine
+                           )})
   }, ignoreNULL = FALSE)
   
   

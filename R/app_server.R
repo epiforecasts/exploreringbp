@@ -7,6 +7,7 @@ app_server <- function(input, output,session) {
   setup <- callModule(mod_setup_server,
                       "setup_ui_1")
   
+
   # Run the model simulation
   sims <- callModule(mod_model_server, 
                      "model_ui_1", 
