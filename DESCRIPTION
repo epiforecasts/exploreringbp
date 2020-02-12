@@ -1,8 +1,19 @@
 Package: exploreringbp
-Title: Explore: Feasibility of controlling 2019-nCoV outbreaks by isolation of cases and contacts
+Title: Explore the feasibility of controlling 2019-nCoV outbreaks by isolation of cases and contacts
 Version: 0.1.0
-Authors@R: person('Sam', 'Abbott', email = 'contact@samabbott.co.uk', role = c('cre', 'aut'))
-Description: Explore: Feasibility of controlling 2019-nCoV outbreaks by isolation of cases and contacts.
+Authors@R: c(
+    person(given = "Sam Abbott",
+           role = c("aut", "cre"),
+           email = "contact@samabbott.co.uk",
+           comment = c(ORCID = "0000-0001-8057-8037")),
+    person(given = "Joel Hellewell",
+           role = c("aut"),
+           email = "Joel.Hellewell@lshtm.ac.uk",
+           comment = c(ORCID = "0000-0003-2683-0849")),
+    person("Amy", "Gimma", 
+           email = "amy.gimma@lshtm.ac.uk", 
+           role = c("aut")))
+Description: Explore the feasibility of controlling 2019-nCoV outbreaks by isolation of cases and contacts.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
