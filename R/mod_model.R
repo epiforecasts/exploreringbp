@@ -65,11 +65,11 @@ mod_model_server <- function(input, output, session, params){
     }else if (params$theta %in% "30%"){
       k <- 0.7
     }
-    if (params$quarantine %in% "Symptom onset") {
-      quarantine <- FALSE
-    }else{
-      quarantine <- TRUE
-    }
+    # if (params$quarantine %in% "Symptom onset") {
+    #   quarantine <- FALSE
+    # }else{
+    #   quarantine <- TRUE
+    # }
     
     ## Run as a background process and cache results
     future({mscenario_sim(n.sim = n.sim, 

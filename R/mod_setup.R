@@ -84,12 +84,12 @@ mod_setup_ui <- function(id){
                        choices = c("Short", 
                                    "Long"),
                        selected = "Short"),
-               br(),
-               f7BlockHeader("Isolation at:"),
-               f7Radio(ns("quarantine"), 
-                       label = "Isolation at:", 
-                       choices = c("Symptom onset", "When contact traced"),
-                       selected = "Symptom onset")
+               # br(),
+               # f7BlockHeader("Isolation at:"),
+               # f7Radio(ns("quarantine"), 
+               #         label = "Isolation at:", 
+               #         choices = c("Symptom onset", "When contact traced"),
+               #         selected = "Symptom onset")
         ),
         f7Card(title = "Assessment settings",
                f7Slider(ns("n_sim"),
