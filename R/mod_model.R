@@ -27,9 +27,10 @@ mod_model_ui <- function(id){
 #' @rdname mod_model
 #' @param params A list of inputs for the model
 #' @export
-#' @importFrom ringbp scenario_sim
+#' @importFrom ringbp scenario_sim detect_exinct
 #' @importFrom memoise memoise
 #' @importFrom future future
+#' @importFrom dplyr group_by ungroup filter lag left_join mutate
 #' @keywords internal
     
 mod_model_server <- function(input, output, session, params){
@@ -86,7 +87,18 @@ mod_model_server <- function(input, output, session, params){
                            delay_scale = delay_scale, 
                            k = k,
                          #  quarantine = quarantine
-                           )})
+                           ) %>% 
+        dplyr::left_join(
+          ., ringbp::detect_extinct(., cap_cases = cap_cases),
+          by = "sim"
+        ) %>% 
+        dplyr::group_by(sim) %>% 
+        dplyr::filter(cumulative != dplyr::lag(cumulative, n = 2)) %>% 
+        dplyr::ungroup() %>% 
+        dplyr::mutate(control = 
+                        ifelse(extinct == 1, "Controlled", "Uncontrolled") %>% 
+                        factor(levels = c("Controlled", "Uncontrolled")))
+      })
   }, ignoreNULL = FALSE)
   
   

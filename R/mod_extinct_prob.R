@@ -26,18 +26,17 @@ mod_extinct_prob_ui <- function(id){
 # Module Server
     
 #' @rdname mod_extinct_prob
-#' @param sims dataframe of model simulations
+#' @param sliced_sims dataframe of the first time point of model simulations
 #' @param setup A list of inputs for the model
 #' @export
-#' @importFrom ringbp extinct_prob
 #' @keywords internal
     
-mod_extinct_prob_server <- function(input, output, session, sims, setup){
+mod_extinct_prob_server <- function(input, output, session, sliced_sims, setup){
   ns <- session$ns
   
   extinct_prob <- reactive({
-    sims() %...>% {
-      ringbp::extinct_prob(., cap_cases = setup$cap_cases)
+    sliced_sims() %...>% {
+      sum(.$extinct, na.rm = TRUE) / setup$n_sim
     }
   })
   

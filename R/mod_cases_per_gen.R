@@ -45,7 +45,7 @@ mod_cases_per_gen_server <- function(input, output, session, sliced_sims){
                                                                 cases = .))
       ) %...>% 
       tidyr::unnest("cases_per_gen") %...>% 
-      dplyr::group_by(gen) %...>% 
+      dplyr::group_by(gen, control) %...>% 
       dplyr::summarise(
         bottom = quantile(cases, 0.025, na.rm = TRUE),
         lower = quantile(cases, 0.25, na.rm = TRUE),

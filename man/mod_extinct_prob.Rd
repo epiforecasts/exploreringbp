@@ -7,7 +7,7 @@
 \usage{
 mod_extinct_prob_ui(id)
 
-mod_extinct_prob_server(input, output, session, sims, setup)
+mod_extinct_prob_server(input, output, session, sliced_sims, setup)
 }
 \arguments{
 \item{id}{shiny id}
@@ -18,7 +18,7 @@ mod_extinct_prob_server(input, output, session, sims, setup)
 
 \item{session}{internal}
 
-\item{sims}{dataframe of model simulations}
+\item{sliced_sims}{dataframe of the first time point of model simulations}
 
 \item{setup}{A list of inputs for the model}
 }
