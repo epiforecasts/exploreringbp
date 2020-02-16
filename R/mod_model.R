@@ -27,7 +27,7 @@ mod_model_ui <- function(id){
 #' @rdname mod_model
 #' @param params A list of inputs for the model
 #' @export
-#' @importFrom ringbp scenario_sim detect_exinct
+#' @importFrom ringbp scenario_sim detect_extinct
 #' @importFrom future future
 #' @importFrom dplyr group_by ungroup filter lag left_join mutate
 #' @keywords internal

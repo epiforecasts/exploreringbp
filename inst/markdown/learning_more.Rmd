@@ -1,9 +1,0 @@
----
-output: html_document
----
-
-* [Feasibility of controlling 2019-nCoV outbreaks by isolation of cases and contacts](https://cmmid.github.io/ncov/isolation_contact_tracing/)
-
-* [Application code](https://github.com/epiforecasts/exploreringbp)
-
-* [Model code](https://github.com/epiforecasts/ringbp)
