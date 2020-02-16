@@ -28,7 +28,6 @@ mod_model_ui <- function(id){
 #' @param params A list of inputs for the model
 #' @export
 #' @importFrom ringbp scenario_sim detect_exinct
-#' @importFrom memoise memoise
 #' @importFrom future future
 #' @importFrom dplyr group_by ungroup filter lag left_join mutate
 #' @keywords internal
@@ -37,7 +36,6 @@ mod_model_server <- function(input, output, session, params){
   
   ns <- session$ns
   
-  mscenario_sim <- memoise::memoise(ringbp::scenario_sim)
   
   out <-  eventReactive(params$go, {
     ## Define parameters for future
@@ -73,7 +71,7 @@ mod_model_server <- function(input, output, session, params){
     # }
     
     ## Run as a background process and cache results
-    future({mscenario_sim(n.sim = n.sim, 
+    future({ringbp::scenario_sim(n.sim = n.sim, 
                           num.initial.cases = num.initial.cases,
                            prop.asym = prop.asym,
                            prop.ascertain = prop.ascertain, 

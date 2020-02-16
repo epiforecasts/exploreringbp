@@ -26,7 +26,6 @@ Imports:
     glue,
     htmltools,
     ringbp,
-    memoise,
     dplyr,
     tidyr,
     tibble,
