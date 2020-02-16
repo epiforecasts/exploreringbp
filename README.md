@@ -20,14 +20,6 @@ following:
 remotes::install_github("epiforecasts/exploreringbp", dependencies = TRUE)
 ```
 
-For use cases in which high loads are expected the app can be run in
-parallel using the `future` package. *This step is optional.*
-
-``` r
-## For high load settings with multiple cores available
-future::plan("multisession")
-```
-
 Run the app locally.
 
 ``` r

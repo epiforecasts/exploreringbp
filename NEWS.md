@@ -1,3 +1,4 @@
-# exploreringbp 0.0.0.9000
+# exploreringbp 0.1.0
 
 * Added a `NEWS.md` file to track changes to the package.
+* First draft of app
