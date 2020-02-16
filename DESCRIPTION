@@ -38,7 +38,8 @@ Imports:
     shinyMobile,
     rmarkdown,
     markdown,
-    waiter
+    waiter,
+    pkgload
 Remotes:
     epiforecasts/ringbp
 RoxygenNote: 7.0.2
