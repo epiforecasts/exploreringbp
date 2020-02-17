@@ -163,7 +163,7 @@ mod_setup_server <- function(input, output, session){
   })
 
   output$prop.asym_label <- renderUI({
-    make_label( "Proportion of cases that are asymptomatic: ", 
+    make_label( "Proportion of cases that are subclinical: ", 
                 input$prop.asym)
   })
   
@@ -175,7 +175,7 @@ mod_setup_server <- function(input, output, session){
   ## Control reactive labels
   
   output$prop.ascertain_label <- renderUI({
-    f7BlockHeader(paste0("Control effectiveness: ", 
+    f7BlockHeader(paste0("Contacts traced: ", 
                          round(100 * input$prop.ascertain, 0), "%"))
   })
   
@@ -201,8 +201,8 @@ mod_setup_server <- function(input, output, session){
   })
   
   output$cap_max_days_label <- renderUI({
-    make_label( "The maximum simulation time for the model: ", 
-                input$cap_max_days)
+    f7BlockHeader(paste0("The maximum simulation time for the model: ", 
+                input$cap_max_days, " days"))
   })
   
   return(input)
