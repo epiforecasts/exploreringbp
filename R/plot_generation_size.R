@@ -1,16 +1,16 @@
 #' Plot cases per generation
 #'
 #' @param generation_sizes A dataframe containing cases per generation
-#'
+#' @param log Logical, defaults to FALSE. Should the plot be shown logged on the y axis.
 #' @return A `ggplot2` object plotting cases per generation
 #' @export
 #'
-#' @importFrom ggplot2 ggplot aes geom_ribbon geom_point geom_line theme guide_legend guides scale_colour_brewer scale_fill_brewer
+#' @importFrom ggplot2 ggplot aes geom_ribbon geom_point geom_line theme guide_legend guides scale_colour_brewer scale_y_log10 scale_fill_brewer
 #' @importFrom cowplot theme_cowplot
 #' @examples
 #' 
 #' 
-plot_generation_size <- function(generation_sizes) {
+plot_generation_size <- function(generation_sizes, log = FALSE) {
   plot <- ggplot2::ggplot(generation_sizes, 
                            ggplot2::aes(x = gen, y = median, 
                                         col = control, fill = control)) +
@@ -30,5 +30,11 @@ plot_generation_size <- function(generation_sizes) {
     ggplot2::scale_colour_brewer(palette = "Set1", direction = -1, guide = FALSE) +
     ggplot2::scale_fill_brewer(palette = "Set1", direction = -1, guide = FALSE) +
     ggplot2::guides(size = ggplot2::guide_legend(title = "Simulations that reach this generation"))
+  
+  if (log) {
+    plot <- plot + 
+      ggplot2::scale_y_log10()
+  }
+  
   return(plot)
 }

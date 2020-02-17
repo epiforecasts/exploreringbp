@@ -4,10 +4,12 @@
 \alias{plot_generation_size}
 \title{Plot cases per generation}
 \usage{
-plot_generation_size(generation_sizes)
+plot_generation_size(generation_sizes, log = FALSE)
 }
 \arguments{
 \item{generation_sizes}{A dataframe containing cases per generation}
+
+\item{log}{Logical, defaults to FALSE. Should the plot be shown logged on the y axis.}
 }
 \value{
 A `ggplot2` object plotting cases per generation

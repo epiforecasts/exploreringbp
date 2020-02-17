@@ -4,7 +4,7 @@
 \alias{plot_traces}
 \title{Plot outbreak traces}
 \usage{
-plot_traces(sims)
+plot_traces(sims, log = FALSE)
 }
 \arguments{
 \item{sims}{A dataframe produced by `ringbp::scenarios_sims`.}

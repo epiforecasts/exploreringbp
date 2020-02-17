@@ -18,7 +18,8 @@ mod_model_ui <- function(id){
   tagList(
     f7Card(
       title = "Outbreak trajectories",
-      plotOutput(ns("trace_plot"))
+      plotOutput(ns("trace_plot")),
+      f7Toggle(ns("toggle_log"), label = "Use log scaling")
     )
   )
 }
@@ -102,7 +103,7 @@ mod_model_server <- function(input, output, session, params){
   
   output$trace_plot <- renderPlot({
     out() %...>% {
-      exploreringbp::plot_traces(.)
+      exploreringbp::plot_traces(., log = input$toggle_log)
     }
   })
   

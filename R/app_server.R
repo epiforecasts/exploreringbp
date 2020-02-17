@@ -12,7 +12,7 @@ app_server <- function(input, output,session) {
   sims <- callModule(mod_model_server, 
                      "model_ui_1", 
                      setup)
-
+  
   # SLice out a singe timepoint from the model simulation
   sliced_sims <- callModule(mod_slice_time_point_server,
                             "slice_time_point_ui_1",
