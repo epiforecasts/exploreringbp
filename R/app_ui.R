@@ -65,12 +65,7 @@ app_ui <- function() {
                     f7Col(
                       mod_cases_per_gen_ui("cases_per_gen_ui_1")
                     )
-                  )
-                ),
-                f7Tab(
-                  tabName = "Settings",
-                  icon = f7Icon("rectangle_3_offgrid"),
-                  active = FALSE,
+                  ),
                   mod_setup_ui("setup_ui_1"),
                   h1("")
                 ),
