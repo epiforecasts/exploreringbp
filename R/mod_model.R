@@ -31,6 +31,7 @@ mod_model_ui <- function(id){
 #' @importFrom ringbp scenario_sim detect_extinct
 #' @importFrom future future
 #' @importFrom dplyr group_by ungroup filter lag left_join mutate
+#' @importFrom waiter waiter_show waiter_hide
 #' @keywords internal
     
 mod_model_server <- function(input, output, session, params){
@@ -72,7 +73,7 @@ mod_model_server <- function(input, output, session, params){
     # }
     
     ## Run as a background process and cache results
-    future({ringbp::scenario_sim(n.sim = n.sim, 
+    sim <- future({ringbp::scenario_sim(n.sim = n.sim, 
                           num.initial.cases = num.initial.cases,
                            prop.asym = prop.asym,
                            prop.ascertain = prop.ascertain, 
@@ -98,6 +99,7 @@ mod_model_server <- function(input, output, session, params){
                         ifelse(extinct == 1, "Controlled", "Uncontrolled") %>% 
                         factor(levels = c("Controlled", "Uncontrolled")))
       })
+
   }, ignoreNULL = FALSE)
   
   
